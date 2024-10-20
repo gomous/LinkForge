@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 // import thirdwebIcon from "./thirdweb.svg";
 import Navbar from "./components/Navbar";
 import HostPage from "./components/HostPage";
@@ -16,7 +16,7 @@ import Context from "./context/Context";
 export function App() {
   return (
     <Router>
-      <div className="min-h-[80vh] bg-gray-50">
+      <div className="min-h-[80vh] bg-gray-50 relative"> {/* Make the parent div relative */}
         <Navbar />
         <main className="p-4 pb-10 min-h-[calc(100vh-64px)] flex items-center justify-center container max-w-screen-lg mx-auto">
           <div className="py-4 w-full">
@@ -29,18 +29,20 @@ export function App() {
               <Route path="/mentorship" element={<MentorshipPage />} />
               <Route path="/courses" element={<CoursesPage />} />
               <Route path="/practice" element={<PracticePage />} />
-              <Route
-                path="/create-opportunity"
-                element={<CreateOpportunityPage />}
-              />
-              <Route
-                path="/register/:eventType/:eventId"
-                element={<RegistrationPage />}
-              />
-              <Route path="/context" element={<Context/>} />
+              <Route path="/create-opportunity" element={<CreateOpportunityPage />} />
+              <Route path="/register/:eventType/:eventId" element={<RegistrationPage />} />
+              <Route path="/context" element={<Context />} />
             </Routes>
           </div>
         </main>
+
+        {/* Button to go to the Context page */}
+        <Link
+          to="/context"
+          className="fixed bottom-4 right-4 bg-purple-500 text-white px-4 py-2 rounded-full shadow-md hover:bg-purple-600 transition duration-300"
+        >
+          Context
+        </Link>
       </div>
     </Router>
   );
@@ -123,13 +125,13 @@ function CategoryCard({
   link: string;
 }) {
   return (
-    <a
-      href={link}
+    <Link
+      to={link}
       className={`${color} p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col`}
     >
       <div className="text-3xl mb-2">{icon}</div>
       <h2 className="text-lg font-semibold text-gray-900 mb-1">{title}</h2>
       <p className="text-sm text-gray-600">{description}</p>
-    </a>
+    </Link>
   );
 }
