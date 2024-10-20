@@ -11,6 +11,7 @@ import CoursesPage from "./components/CoursesPage";
 import PracticePage from "./components/PracticePage";
 import RegistrationPage from "./components/RegistrationPage";
 // import Context from './context/context'
+import Context from "./context/Context";
 
 export function App() {
   return (
@@ -36,7 +37,7 @@ export function App() {
                 path="/register/:eventType/:eventId"
                 element={<RegistrationPage />}
               />
-              {/* <Route path="/context" element={<Context/>} /> */}
+              <Route path="/context" element={<Context/>} />
             </Routes>
           </div>
         </main>
